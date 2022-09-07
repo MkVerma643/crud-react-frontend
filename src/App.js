@@ -1,10 +1,13 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import * as React from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.css";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import EditProducts from "./components/product/edit.component";
+
+import EditProduct from "./components/product/edit.component";
 import ProductList from "./components/product/list.component";
 import CreateProduct from "./components/product/create.component";
 
@@ -25,7 +28,7 @@ function App() {
             <Routes>
               <Route path="/product/create" element={<CreateProduct />} />
               <Route path="/product/edit/:id" element={<EditProduct />} />
-              <Route path="/" element={<Product />} />
+              <Route path="/" element={<ProductList />} />
             </Routes>
           </Col>
         </Row>

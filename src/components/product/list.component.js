@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
@@ -12,12 +12,12 @@ export default function List() {
   }, []);
 
   const fetchProducts = async () => {
-    await axios.get(`http://localhost:8000/products`).then(({ data }) => {
+    await axios.get(`http://localhost:8000/api/products`).then(({ data }) => {
       setProducts(data);
     });
   };
 
-  const deleteProducts = async (id) => {
+  const deleteProduct = async (id) => {
     const isConfirm = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

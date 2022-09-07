@@ -24,9 +24,9 @@ export default function CreateProduct() {
 
     const formData = new FormData();
 
-    formData.append("image", image);
     formData.append("title", title);
     formData.append("description", description);
+    formData.append("image", image);
 
     await axios
       .post(`http://localhost:8000/api/products`, formData)
@@ -47,49 +47,61 @@ export default function CreateProduct() {
           });
         }
       });
+  };
 
-    return (
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-12 col-sm-12 col-md-6">
-            <div className="card">
-              <div className="card-body">
-                <div className="card-title">Create Product</div>
-                <hr />
-                <div className="form-wrapper">
-                  {Object.keys(validationError).length > 0 && (
-                    <div className="row">
-                      <div className="col-12">
-                        <div className="alert alert-danger">
-                          <ul>
-                            {Object.keys(validationError).map((key, value) => (
+  return (
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12 col-sm-12 col-md-6">
+          <div className="card">
+            <div className="card-body">
+              <h4 className="card-title">Create Product</h4>
+              <hr />
+              <div className="form-wrapper">
+                {Object.keys(validationError).length > 0 && (
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="alert alert-danger">
+                        <ul className="mb-0">
+                          {Object.entries(validationError).map(
+                            ([key, value]) => (
                               <li key={key}>{value}</li>
-                            ))}
-                          </ul>
-                        </div>
+                            )
+                          )}
+                        </ul>
                       </div>
                     </div>
-                  )}
-                  <Form onSubmit={createProduct}>
+                  </div>
+                )}
+                <Form onSubmit={createProduct}>
                   <Row>
-                      <Col>
-                        <Form.Group controlId="Name">
-                            <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" value={title} onChange={(event)=>{
-                              setTitle(event.target.value)
-                            }}/>
-                        </Form.Group>
-                      </Col>
+                    <Col>
+                      <Form.Group controlId="Name">
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={title}
+                          onChange={(event) => {
+                            setTitle(event.target.value);
+                          }}
+                        />
+                      </Form.Group>
+                    </Col>
                   </Row>
                   <Row className="my-3">
-                      <Col>
-                        <Form.Group controlId="Description">
-                            <Form.Label>Description</Form.Label>
-                            <Form.Control as="textarea" rows={3} value={description} onChange={(event)=>{
-                              setDescription(event.target.value)
-                            }}/>
-                        </Form.Group>
-                      </Col>
+                    <Col>
+                      <Form.Group controlId="Description">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          value={description}
+                          onChange={(event) => {
+                            setDescription(event.target.value);
+                          }}
+                        />
+                      </Form.Group>
+                    </Col>
                   </Row>
                   <Row>
                     <Col>
@@ -99,7 +111,13 @@ export default function CreateProduct() {
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Button variant="primary" className="mt-2" size="lg" block="block" type="submit">
+                  <Button
+                    variant="primary"
+                    className="mt-2"
+                    size="lg"
+                    block="block"
+                    type="submit"
+                  >
                     Save
                   </Button>
                 </Form>
@@ -109,5 +127,5 @@ export default function CreateProduct() {
         </div>
       </div>
     </div>
-  )
+  );
 }
